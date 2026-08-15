@@ -82,7 +82,7 @@ function updateCart() {
     container.innerHTML = "";
 
     if (cart.length === 0) {
-        container.innerHTML = "<p style='text-align:center; color:#777; padding:15px 0;'>Votre panier est vide.</p>";
+        container.innerHTML = "<p style='text-align:center; color:#666; padding:15px 0;'>Votre panier est vide.</p>";
         document.getElementById("cart-subtotal").innerText = "0 DA";
         return;
     }
@@ -96,7 +96,7 @@ function updateCart() {
             <div class="cart-item">
                 <div>
                     <strong>${item.nom}</strong>
-                    <div style="color:#666;">${item.prix} DA × ${item.qty}</div>
+                    <div style="color:#444;">${item.prix} DA × ${item.qty}</div>
                 </div>
                 <div class="cart-controls">
                     <button class="btn-qty" onclick="decreaseQty('${item.id}')">-</button>
