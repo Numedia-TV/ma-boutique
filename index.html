@@ -1,144 +1,280 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volume Cosmetic 3x1</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=3.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boutique en Ligne</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Grille des produits */
+    .products-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      max-width: 1000px;
+      margin: 0 auto 40px auto;
+    }
+
+    .product-card {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      width: 220px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 4px;
+      background: #fafafa;
+      margin-bottom: 10px;
+    }
+
+    .product-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .product-price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 12px;
+    }
+
+    .btn-select {
+      width: 100%;
+      padding: 10px;
+      background-color: #000000;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-select:hover {
+      background-color: #333333;
+    }
+
+    /* Section Formulaire de Commande */
+    .checkout-container {
+      max-width: 450px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .selected-product-box {
+      background: #f0f0f0;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      background-color: #27ae60;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-submit:hover {
+      background-color: #219150;
+    }
+
+    .loading-text {
+      text-align: center;
+      font-style: italic;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- En-tête : Logo à gauche / Panier à droite -->
-    <header>
-        <div class="header-container">
-            <div class="logo-box">
-                <img src="download.png" alt="Logo Volume Cosmetic 3x1" class="brand-logo">
-            </div>
-            
-            <div class="header-actions">
-                <button class="cart-btn" onclick="toggleCart()">
-                    CART (<span id="cart-count">0</span>)
-                </button>
-            </div>
-        </div>
-    </header>
+  <h1>Nos Produits</h1>
 
-    <!-- Petite Couverture / Bannière (Fond Noir Épuré) -->
-    <section class="hero-banner">
-        <h1>EDITORIAL COSMETIC</h1>
-    </section>
+  <!-- Conteneur pour charger les produits depuis Google Sheets -->
+  <div id="products-container" class="products-grid">
+    <p class="loading-text">Chargement des produits...</p>
+  </div>
 
-    <!-- Section Produits -->
-    <main class="main-container">
-        <h2 class="section-title">CURATED COSMETICS</h2>
+  <!-- Formulaire de validation de la commande -->
+  <div class="checkout-container">
+    <h2>Valider la Commande</h2>
 
-        <div id="loading" class="loading-state">
-            <p>Chargement des produits...</p>
-        </div>
-
-        <div id="product-grid" class="product-grid"></div>
-
-        <div class="load-more-wrapper">
-            <button class="btn-load-more">LOAD MORE</button>
-        </div>
-    </main>
-
-    <!-- Modal Panier (Commandes COD) -->
-    <div id="cart-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="toggleCart()">&times;</span>
-            <h2 class="modal-title">VOTRE PANIER</h2>
-            
-            <div id="cart-items"></div>
-            
-            <div class="cart-summary">
-                <span>TOTAL</span>
-                <strong id="cart-subtotal">0 DA</strong>
-            </div>
-
-            <form id="checkout-form" onsubmit="submitOrder(event)">
-                <h3>INFORMATION DE LIVRAISON</h3>
-                
-                <input type="text" id="cust-name" placeholder="Nom & Prénom" required>
-                <input type="tel" id="cust-phone" placeholder="Numéro de téléphone" required>
-                
-                <select id="cust-wilaya" required>
-                    <option value="">Sélectionnez votre Wilaya</option>
-                    <option value="01 - Adrar">01 - Adrar</option>
-                    <option value="02 - Chlef">02 - Chlef</option>
-                    <option value="03 - Laghouat">03 - Laghouat</option>
-                    <option value="04 - Oum El Bouaghi">04 - Oum El Bouaghi</option>
-                    <option value="05 - Batna">05 - Batna</option>
-                    <option value="06 - Béjaïa">06 - Béjaïa</option>
-                    <option value="07 - Biskra">07 - Biskra</option>
-                    <option value="08 - Béchar">08 - Béchar</option>
-                    <option value="09 - Blida">09 - Blida</option>
-                    <option value="10 - Bouira">10 - Bouira</option>
-                    <option value="11 - Tamanrasset">11 - Tamanrasset</option>
-                    <option value="12 - Tébessa">12 - Tébessa</option>
-                    <option value="13 - Tlemcen">13 - Tlemcen</option>
-                    <option value="14 - Tiaret">14 - Tiaret</option>
-                    <option value="15 - Tizi Ouzou">15 - Tizi Ouzou</option>
-                    <option value="16 - Alger">16 - Alger</option>
-                    <option value="17 - Djelfa">17 - Djelfa</option>
-                    <option value="18 - Jijel">18 - Jijel</option>
-                    <option value="19 - Sétif">19 - Sétif</option>
-                    <option value="20 - Saïda">20 - Saïda</option>
-                    <option value="21 - Skikda">21 - Skikda</option>
-                    <option value="22 - Sidi Bel Abbès">22 - Sidi Bel Abbès</option>
-                    <option value="23 - Annaba">23 - Annaba</option>
-                    <option value="24 - Guelma">24 - Guelma</option>
-                    <option value="25 - Constantine">25 - Constantine</option>
-                    <option value="26 - Médéa">26 - Médéa</option>
-                    <option value="27 - Mostaganem">27 - Mostaganem</option>
-                    <option value="28 - M'Sila">28 - M'Sila</option>
-                    <option value="29 - Mascara">29 - Mascara</option>
-                    <option value="30 - Ouargla">30 - Ouargla</option>
-                    <option value="31 - Oran">31 - Oran</option>
-                    <option value="32 - El Bayadh">32 - El Bayadh</option>
-                    <option value="33 - Illizi">33 - Illizi</option>
-                    <option value="34 - Bordj Bou Arreridj">34 - Bordj Bou Arreridj</option>
-                    <option value="35 - Boumerdès">35 - Boumerdès</option>
-                    <option value="36 - El Tarf">36 - El Tarf</option>
-                    <option value="37 - Tindouf">37 - Tindouf</option>
-                    <option value="38 - Tissemsilt">38 - Tissemsilt</option>
-                    <option value="39 - El Oued">39 - El Oued</option>
-                    <option value="40 - Khenchela">40 - Khenchela</option>
-                    <option value="41 - Souk Ahras">41 - Souk Ahras</option>
-                    <option value="42 - Tipaza">42 - Tipaza</option>
-                    <option value="43 - Mila">43 - Mila</option>
-                    <option value="44 - Aïn Defla">44 - Aïn Defla</option>
-                    <option value="45 - Naâma">45 - Naâma</option>
-                    <option value="46 - Aïn Témouchent">46 - Aïn Témouchent</option>
-                    <option value="47 - Ghardaïa">47 - Ghardaïa</option>
-                    <option value="48 - Relizane">48 - Relizane</option>
-                    <option value="49 - Timimoun">49 - Timimoun</option>
-                    <option value="50 - Bordj Badji Mokhtar">50 - Bordj Badji Mokhtar</option>
-                    <option value="51 - Ouled Djellal">51 - Ouled Djellal</option>
-                    <option value="52 - Béni Abbès">52 - Béni Abbès</option>
-                    <option value="53 - In Salah">53 - In Salah</option>
-                    <option value="54 - In Guezzam">54 - In Guezzam</option>
-                    <option value="55 - Touggourt">55 - Touggourt</option>
-                    <option value="56 - Djanet">56 - Djanet</option>
-                    <option value="57 - El M'Ghair">57 - El M'Ghair</option>
-                    <option value="58 - El Meniaa">58 - El Meniaa</option>
-                </select>
-                
-                <input type="text" id="cust-address" placeholder="Adresse complète" required>
-                
-                <button type="submit" id="submit-btn" class="btn-submit">VALIDER LA COMMANDE</button>
-            </form>
-        </div>
+    <div id="selected-product-info" class="selected-product-box">
+      Veuillez choisir un produit ci-dessus
     </div>
 
-    <!-- Pied de page Noir Strict -->
-    <footer>
-        <p class="copyright">&copy; 2026 Volume Cosmetic. ALL RIGHTS RESERVED.</p>
-    </footer>
+    <form id="formCommande">
+      <div class="form-group">
+        <label for="nom">Nom Complet :</label>
+        <input type="text" id="nom" placeholder="Ex: Mohamed Amine" required>
+      </div>
 
-    <script src="script.js"></script>
+      <div class="form-group">
+        <label for="telephone">Numéro de Téléphone :</label>
+        <input type="tel" id="telephone" placeholder="Ex: 0550123456" required>
+      </div>
+
+      <div class="form-group">
+        <label for="adresse">Adresse de Livraison :</label>
+        <input type="text" id="adresse" placeholder="Ex: Alger, Bab Ezzouar" required>
+      </div>
+
+      <button type="button" class="btn-submit" onclick="envoyerCommande()">Commander Maintenant</button>
+    </form>
+  </div>
+
+  <script>
+    // ⚠️ REMPLACEZ CETTE URL PAR VOTRE URL OBTENUE APRÈS LE DÉPLOIEMENT APPS SCRIPT
+    const SCRIPT_URL = "https://script.google.com/macros/s/VOTRE_ID_DEPLOIEMENT/exec";
+
+    let produitSelectionne = {
+      nom: "",
+      prix: ""
+    };
+
+    // 1. Charger les produits au chargement de la page
+    window.onload = function() {
+      chargerProduits();
+    };
+
+    function chargerProduits() {
+      fetch(SCRIPT_URL)
+        .then(response => response.json())
+        .then(data => {
+          const container = document.getElementById("products-container");
+          container.innerHTML = "";
+
+          if (!data || data.length === 0) {
+            container.innerHTML = "<p>Aucun produit trouvé.</p>";
+            return;
+          }
+
+          data.forEach(product => {
+            const card = document.createElement("div");
+            card.className = "product-card";
+            card.innerHTML = `
+              <img src="${product.image_url}" alt="${product.nom}" onerror="this.src='https://via.placeholder.com/150'">
+              <div class="product-title">${product.nom}</div>
+              <div class="product-price">${product.prix}</div>
+              <button class="btn-select" onclick="choisirProduit('${product.nom.replace(/'/g, "\\'")}', '${product.prix}')">Sélectionner</button>
+            `;
+            container.appendChild(card);
+          });
+        })
+        .catch(error => {
+          console.error("Erreur de chargement :", error);
+          document.getElementById("products-container").innerHTML = "<p>Erreur lors du chargement des produits.</p>";
+        });
+    }
+
+    // 2. Sélectionner un produit
+    function choisirProduit(nom, prix) {
+      produitSelectionne.nom = nom;
+      produitSelectionne.prix = prix;
+      document.getElementById("selected-product-info").innerText = `Produit : ${nom} - ${prix}`;
+      window.scrollTo({ top: document.querySelector('.checkout-container').offsetTop - 20, behavior: 'smooth' });
+    }
+
+    // 3. Envoyer la commande vers Google Sheets
+    function envoyerCommande() {
+      const nomVal = document.getElementById("nom").value.trim();
+      const telVal = document.getElementById("telephone").value.trim();
+      const adrVal = document.getElementById("adresse").value.trim();
+
+      if (!produitSelectionne.nom) {
+        alert("Veuillez sélectionner un produit avant de commander.");
+        return;
+      }
+
+      if (!nomVal || !telVal || !adrVal) {
+        alert("Veuillez remplir tous les champs du formulaire.");
+        return;
+      }
+
+      const payload = {
+        nom: nomVal,
+        telephone: telVal,
+        adresse: adrVal,
+        produit: produitSelectionne.nom,
+        prix: produitSelectionne.prix
+      };
+
+      fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(() => {
+        alert("Votre commande a été envoyée avec succès !");
+        document.getElementById("formCommande").reset();
+        document.getElementById("selected-product-info").innerText = "Veuillez choisir un produit ci-dessus";
+        produitSelectionne = { nom: "", prix: "" };
+      })
+      .catch(error => {
+        console.error("Erreur d'envoi :", error);
+        alert("Une erreur est survenue lors de la commande.");
+      });
+    }
+  </script>
+
 </body>
 </html>
