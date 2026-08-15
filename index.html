@@ -3,196 +3,311 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boutique en Ligne</title>
+  <title>Volume Cosmétique 3x1 — Boutique Officielle</title>
+  
+  <!-- Polices Google Fonts pour un style luxe/épuré type The Ordinary -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+
   <style>
+    /* Reset & Base */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
     }
 
     body {
-      background-color: #f5f5f5;
-      padding: 20px;
+      background-color: #FFFFFF;
+      color: #111111;
+      font-family: 'Montserrat', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 80px;
     }
 
-    h1, h2 {
+    /* Header & Navigation */
+    header {
       text-align: center;
-      margin-bottom: 20px;
+      padding: 50px 20px 30px 20px;
+      border-bottom: 1px solid #E5E5E5;
+      margin-bottom: 50px;
     }
 
-    /* Grille des produits */
+    .brand-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #000000;
+      margin-bottom: 8px;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: #777777;
+      font-weight: 400;
+    }
+
+    /* Layout principal */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      text-align: center;
+      letter-spacing: 1.5px;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* Grille Produits Style The Ordinary / Touche */
     .products-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-      max-width: 1000px;
-      margin: 0 auto 40px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      margin-bottom: 70px;
     }
 
     .product-card {
-      background: #ffffff;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      width: 220px;
-      padding: 15px;
+      background: #FFFFFF;
+      border: 1px solid #E5E5E5;
+      padding: 25px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
     }
 
-    .product-card img {
+    .product-card:hover {
+      border-color: #000000;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+
+    .product-image-wrapper {
       width: 100%;
-      height: 180px;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      background-color: #FAFAFA;
+      padding: 10px;
+    }
+
+    .product-image-wrapper img {
+      max-width: 100%;
+      max-height: 100%;
       object-fit: contain;
-      border-radius: 4px;
-      background: #fafafa;
-      margin-bottom: 10px;
     }
 
     .product-title {
-      font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 8px;
-      color: #333;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: #111111;
+      min-height: 38px;
+      display: flex;
+      align-items: center;
     }
 
     .product-price {
-      font-size: 18px;
-      font-weight: bold;
-      color: #000;
-      margin-bottom: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #000000;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
     }
 
     .btn-select {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       background-color: #000000;
-      color: #ffffff;
-      border: none;
-      border-radius: 4px;
-      font-weight: bold;
+      color: #FFFFFF;
+      border: 1px solid #000000;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 500;
       cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
     .btn-select:hover {
-      background-color: #333333;
+      background-color: #FFFFFF;
+      color: #000000;
     }
 
-    /* Section Formulaire de Commande */
-    .checkout-container {
-      max-width: 450px;
+    /* Formulaire de Commande Haut de Gamme */
+    .checkout-wrapper {
+      max-width: 520px;
       margin: 0 auto;
-      background: #ffffff;
-      padding: 25px;
-      border-radius: 8px;
-      border: 1px solid #e0e0e0;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      border: 1px solid #111111;
+      padding: 40px 35px;
+      background: #FFFFFF;
+    }
+
+    .checkout-header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #E5E5E5;
+      padding-bottom: 20px;
+    }
+
+    .checkout-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
     }
 
     .selected-product-box {
-      background: #f0f0f0;
-      padding: 10px;
-      border-radius: 4px;
-      margin-bottom: 15px;
-      font-weight: bold;
-      text-align: center;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #555555;
+      background: #FAFAFA;
+      padding: 12px;
+      border: 1px dashed #CCCCCC;
+    }
+
+    .selected-product-box strong {
+      color: #000000;
     }
 
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 22px;
     }
 
     .form-group label {
       display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-      font-size: 14px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #222222;
     }
 
     .form-group input {
       width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 14px;
+      padding: 12px 14px;
+      border: 1px solid #D1D1D1;
+      background: #FFFFFF;
+      font-size: 13px;
+      font-family: 'Montserrat', sans-serif;
+      color: #111111;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group input:focus {
+      border-color: #000000;
     }
 
     .btn-submit {
       width: 100%;
-      padding: 12px;
-      background-color: #27ae60;
-      color: #ffffff;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      font-weight: bold;
+      padding: 15px;
+      background-color: #000000;
+      color: #FFFFFF;
+      border: 1px solid #000000;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-weight: 600;
       cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
     .btn-submit:hover {
-      background-color: #219150;
+      background-color: #333333;
+      border-color: #333333;
     }
 
-    .loading-text {
+    .status-loading {
       text-align: center;
-      font-style: italic;
-      color: #666;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #888888;
+      padding: 40px 0;
+      grid-column: 1 / -1;
     }
   </style>
 </head>
 <body>
 
-  <h1>Nos Produits</h1>
+  <!-- En-tête de la marque -->
+  <header>
+    <div class="brand-logo">Volume Cosmétique</div>
+    <div class="brand-subtitle">3 x 1 — Formulations Spécialisées</div>
+  </header>
 
-  <!-- Conteneur pour charger les produits depuis Google Sheets -->
-  <div id="products-container" class="products-grid">
-    <p class="loading-text">Chargement des produits...</p>
-  </div>
+  <div class="container">
+    <h2 class="section-title">Sélection de Produits</h2>
 
-  <!-- Formulaire de validation de la commande -->
-  <div class="checkout-container">
-    <h2>Valider la Commande</h2>
-
-    <div id="selected-product-info" class="selected-product-box">
-      Veuillez choisir un produit ci-dessus
+    <!-- Conteneur des cartes produits -->
+    <div id="products-container" class="products-grid">
+      <div class="status-loading">Chargement de la collection...</div>
     </div>
 
-    <form id="formCommande">
-      <div class="form-group">
-        <label for="nom">Nom Complet :</label>
-        <input type="text" id="nom" placeholder="Ex: Mohamed Amine" required>
+    <!-- Formulaire de commande minimaliste -->
+    <div class="checkout-wrapper" id="checkout-section">
+      <div class="checkout-header">
+        <h3>Finaliser la Commande</h3>
+        <div id="selected-product-info" class="selected-product-box">
+          Aucun produit sélectionné
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="telephone">Numéro de Téléphone :</label>
-        <input type="tel" id="telephone" placeholder="Ex: 0550123456" required>
-      </div>
+      <form id="formCommande">
+        <div class="form-group">
+          <label for="nom">Nom & Prénom</label>
+          <input type="text" id="nom" placeholder="Ex: Amine Benali" required>
+        </div>
 
-      <div class="form-group">
-        <label for="adresse">Adresse de Livraison :</label>
-        <input type="text" id="adresse" placeholder="Ex: Alger, Bab Ezzouar" required>
-      </div>
+        <div class="form-group">
+          <label for="telephone">Téléphone</label>
+          <input type="tel" id="telephone" placeholder="Ex: 0550123456" required>
+        </div>
 
-      <button type="button" class="btn-submit" onclick="envoyerCommande()">Commander Maintenant</button>
-    </form>
+        <div class="form-group">
+          <label for="adresse">Adresse complète & Ville</label>
+          <input type="text" id="adresse" placeholder="Ex: Bab Ezzouar, Alger" required>
+        </div>
+
+        <button type="button" class="btn-submit" onclick="envoyerCommande()">Confirmer la Commande</button>
+      </form>
+    </div>
   </div>
 
   <script>
-    // ⚠️ REMPLACEZ CETTE URL PAR VOTRE URL OBTENUE APRÈS LE DÉPLOIEMENT APPS SCRIPT
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyV0AQPl9Hv20mNRzQm5jUhMR3c_kP93AzZdjAEtvQwE0tJyS8uWl74DwrbASFKV84P/exec";
+    // ⚠️ Remplacez par votre URL Apps Script déployée
+    const SCRIPT_URL = "https://script.google.com/macros/s/VOTRE_ID_DEPLOIEMENT/exec";
 
     let produitSelectionne = {
       nom: "",
       prix: ""
     };
 
-    // 1. Charger les produits au chargement de la page
     window.onload = function() {
       chargerProduits();
     };
 
+    // Charger les produits depuis Google Sheets
     function chargerProduits() {
       fetch(SCRIPT_URL)
         .then(response => response.json())
@@ -201,7 +316,7 @@
           container.innerHTML = "";
 
           if (!data || data.length === 0) {
-            container.innerHTML = "<p>Aucun produit trouvé.</p>";
+            container.innerHTML = '<div class="status-loading">Aucun produit disponible pour le moment.</div>';
             return;
           }
 
@@ -209,7 +324,9 @@
             const card = document.createElement("div");
             card.className = "product-card";
             card.innerHTML = `
-              <img src="${product.image_url}" alt="${product.nom}" onerror="this.src='https://via.placeholder.com/150'">
+              <div class="product-image-wrapper">
+                <img src="${product.image_url}" alt="${product.nom}" onerror="this.src='https://via.placeholder.com/200x200?text=Volume+Cosmétique'">
+              </div>
               <div class="product-title">${product.nom}</div>
               <div class="product-price">${product.prix}</div>
               <button class="btn-select" onclick="choisirProduit('${product.nom.replace(/'/g, "\\'")}', '${product.prix}')">Sélectionner</button>
@@ -219,26 +336,28 @@
         })
         .catch(error => {
           console.error("Erreur de chargement :", error);
-          document.getElementById("products-container").innerHTML = "<p>Erreur lors du chargement des produits.</p>";
+          document.getElementById("products-container").innerHTML = '<div class="status-loading">Impossible de charger le catalogue.</div>';
         });
     }
 
-    // 2. Sélectionner un produit
+    // Sélectionner un produit et faire défiler jusqu'au formulaire
     function choisirProduit(nom, prix) {
       produitSelectionne.nom = nom;
       produitSelectionne.prix = prix;
-      document.getElementById("selected-product-info").innerText = `Produit : ${nom} - ${prix}`;
-      window.scrollTo({ top: document.querySelector('.checkout-container').offsetTop - 20, behavior: 'smooth' });
+      document.getElementById("selected-product-info").innerHTML = `Produit retenu : <strong>${nom}</strong> — ${prix}`;
+      
+      const target = document.getElementById('checkout-section');
+      window.scrollTo({ top: target.offsetTop - 30, behavior: 'smooth' });
     }
 
-    // 3. Envoyer la commande vers Google Sheets
+    // Envoi de la commande vers Google Sheets
     function envoyerCommande() {
       const nomVal = document.getElementById("nom").value.trim();
       const telVal = document.getElementById("telephone").value.trim();
       const adrVal = document.getElementById("adresse").value.trim();
 
       if (!produitSelectionne.nom) {
-        alert("Veuillez sélectionner un produit avant de commander.");
+        alert("Veuillez sélectionner un produit dans la liste.");
         return;
       }
 
@@ -264,14 +383,14 @@
         body: JSON.stringify(payload)
       })
       .then(() => {
-        alert("Votre commande a été envoyée avec succès !");
+        alert("Votre commande a bien été transmise à Volume Cosmétique.");
         document.getElementById("formCommande").reset();
-        document.getElementById("selected-product-info").innerText = "Veuillez choisir un produit ci-dessus";
+        document.getElementById("selected-product-info").innerText = "Aucun produit sélectionné";
         produitSelectionne = { nom: "", prix: "" };
       })
       .catch(error => {
         console.error("Erreur d'envoi :", error);
-        alert("Une erreur est survenue lors de la commande.");
+        alert("Erreur réseau lors de l'envoi de la commande.");
       });
     }
   </script>
