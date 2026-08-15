@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Boutique E-Commerce COD</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="logo">MonShop COD</div>
+        <div class="cart-btn" onclick="toggleCart()">
+            🛒 Panier (<span id="cart-count">0</span>)
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Bienvenue sur notre Boutique</h1>
+        <p>Paiement à la livraison dans toutes les Wilayas !</p>
+    </div>
+
+    <main class="container">
+        <h2>Nos Produits</h2>
+        <div id="loading">Chargement du catalogue depuis Google Sheets...</div>
+        <div id="product-grid" class="grid"></div>
+    </main>
+
+    <!-- Modal Panier -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleCart()">&times;</span>
+            <h2>Mon Panier</h2>
+            <div id="cart-items"></div>
+            <div class="cart-summary">
+                <p>Sous-total: <strong id="cart-subtotal">0 DA</strong></p>
+            </div>
+
+            <hr>
+
+            <h3>Coordonnées de Livraison (COD)</h3>
+            <form id="checkout-form" onsubmit="submitOrder(event)">
+                <input type="text" id="cust-name" placeholder="Nom et Prénom" required>
+                <input type="tel" id="cust-phone" placeholder="Numéro de Téléphone" required>
+                <select id="cust-wilaya" required>
+                    <option value="">Sélectionnez votre Wilaya</option>
+                    <option value="16 - Alger">16 - Alger</option>
+                    <option value="31 - Oran">31 - Oran</option>
+                    <option value="25 - Constantine">25 - Constantine</option>
+                    <option value="Autre Wilaya">Autre Wilaya</option>
+                </select>
+                <input type="text" id="cust-address" placeholder="Commune & Adresse exacte" required>
+                
+                <button type="submit" id="submit-btn" class="btn-submit">Valider la Commande (Paiement à la livraison)</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
