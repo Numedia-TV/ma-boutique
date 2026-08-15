@@ -6,48 +6,37 @@
     <title>Volume Cosmetic 3x1</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3.0">
 </head>
 <body>
 
-    <!-- Bar de navigation supérieure -->
+    <!-- En-tête : Logo à gauche / Panier à droite -->
     <header>
         <div class="header-container">
             <div class="logo-box">
-                <img src="download.png" alt="VOLUME cosmetic 3x1" class="brand-logo">
+                <img src="download.png" alt="Logo Volume Cosmetic 3x1" class="brand-logo">
             </div>
             
-            <nav class="nav-links">
-                <a href="#">NEW ARRIVALS</a>
-                <a href="#">SKINCARE</a>
-                <a href="#">HAIRCARE</a>
-                <a href="#">FRAGRANCE</a>
-                <a href="#">STORY</a>
-                <a href="#">OUR PROMISE</a>
-            </nav>
-
             <div class="header-actions">
                 <button class="cart-btn" onclick="toggleCart()">
-                    🛒 CART (<span id="cart-count">0</span>)
+                    CART (<span id="cart-count">0</span>)
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Bannière Hero Éditoriale -->
+    <!-- Petite Couverture / Bannière (Fond Noir Épuré) -->
     <section class="hero-banner">
-        <div class="hero-overlay">
-            <h1>EDITORIAL COSMETIC</h1>
-        </div>
+        <h1>EDITORIAL COSMETIC</h1>
     </section>
 
-    <!-- Section Principale Produits -->
+    <!-- Section Produits -->
     <main class="main-container">
         <h2 class="section-title">CURATED COSMETICS</h2>
 
         <div id="loading" class="loading-state">
-            <p>Chargement des soins...</p>
+            <p>Chargement des produits...</p>
         </div>
 
         <div id="product-grid" class="product-grid"></div>
@@ -57,7 +46,7 @@
         </div>
     </main>
 
-    <!-- Modal Panier -->
+    <!-- Modal Panier (Commandes COD) -->
     <div id="cart-modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="toggleCart()">&times;</span>
@@ -145,15 +134,8 @@
         </div>
     </div>
 
-    <!-- Pied de page noir -->
+    <!-- Pied de page Noir Strict -->
     <footer>
-        <div class="footer-links">
-            <a href="#">QUICK LINKS</a>
-            <a href="#">SKINCARE</a>
-            <a href="#">FRAGRANCE</a>
-            <a href="#">STORY</a>
-            <a href="#">OUR PROMISE</a>
-        </div>
         <p class="copyright">&copy; 2026 Volume Cosmetic. ALL RIGHTS RESERVED.</p>
     </footer>
 
