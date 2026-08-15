@@ -17,7 +17,7 @@ async function fetchProducts() {
         renderProducts();
     } catch (error) {
         console.error("Erreur de chargement:", error);
-        document.getElementById("loading").innerHTML = "<p>Erreur de chargement des soins. Veuillez rafraîchir la page.</p>";
+        document.getElementById("loading").innerHTML = "<p>Erreur de chargement des produits.</p>";
     }
 }
 
@@ -26,25 +26,20 @@ function renderProducts() {
     grid.innerHTML = "";
     
     if (!products || products.length === 0) {
-        grid.innerHTML = "<p style='grid-column: 1/-1; text-align:center;'>Aucun produit disponible actuellement.</p>";
+        grid.innerHTML = "<p style='grid-column: 1/-1; text-align:center;'>Aucun produit disponible.</p>";
         return;
     }
 
     products.forEach(p => {
         grid.innerHTML += `
-            <div class="card">
-                <div class="card-img-wrapper">
-                    <img src="${p.image_url || 'https://via.placeholder.com/300'}" alt="${p.nom}">
+            <div class="product-card">
+                <div class="card-img-circle">
+                    <img src="${p.image_url || 'https://via.placeholder.com/150'}" alt="${p.nom}">
                 </div>
-                <div class="card-info">
-                    <div>
-                        <div class="card-title">${p.nom}</div>
-                        <div class="card-desc">${p.description || ''}</div>
-                    </div>
-                    <div>
-                        <div class="card-price">${p.prix} DA</div>
-                        <button class="btn-add" onclick="addToCart('${p.id}')">AJOUTER AU PANIER</button>
-                    </div>
+                <div class="product-info">
+                    <div class="product-title">${p.nom}</div>
+                    <div class="product-price">${p.prix} DA</div>
+                    <button class="btn-add-cart" onclick="addToCart('${p.id}')">ADD TO CART</button>
                 </div>
             </div>
         `;
@@ -87,7 +82,7 @@ function updateCart() {
     container.innerHTML = "";
 
     if (cart.length === 0) {
-        container.innerHTML = "<p style='text-align:center; color:#888; padding: 20px 0; font-size:0.85rem;'>Votre panier est vide.</p>";
+        container.innerHTML = "<p style='text-align:center; color:#777; padding:15px 0;'>Votre panier est vide.</p>";
         document.getElementById("cart-subtotal").innerText = "0 DA";
         return;
     }
@@ -100,12 +95,12 @@ function updateCart() {
         container.innerHTML += `
             <div class="cart-item">
                 <div>
-                    <strong style="display:block; font-weight:600;">${item.nom}</strong>
-                    <small style="color:#666;">${item.prix} DA × ${item.qty}</small>
+                    <strong>${item.nom}</strong>
+                    <div style="color:#666;">${item.prix} DA × ${item.qty}</div>
                 </div>
                 <div class="cart-controls">
                     <button class="btn-qty" onclick="decreaseQty('${item.id}')">-</button>
-                    <span><strong>${item.qty}</strong></span>
+                    <span>${item.qty}</span>
                     <button class="btn-qty" onclick="addToCart('${item.id}')">+</button>
                     <button class="btn-delete" onclick="removeFromCart('${item.id}')">✕</button>
                 </div>
@@ -150,7 +145,7 @@ async function submitOrder(e) {
             body: JSON.stringify(payload)
         });
 
-        alert("Commande enregistrée avec succès ! Nous vous contacterons par téléphone pour confirmer la livraison.");
+        alert("Commande enregistrée avec succès !");
         cart = [];
         updateCart();
         toggleCart();
@@ -158,7 +153,7 @@ async function submitOrder(e) {
     } catch (err) {
         alert("Erreur lors de la validation de la commande.");
     } finally {
-        btn.innerText = "CONFIRMER LA COMMANDE";
+        btn.innerText = "VALIDER LA COMMANDE";
         btn.disabled = false;
     }
 }
