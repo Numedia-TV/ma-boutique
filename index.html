@@ -4,56 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volume Cosmetic 3x1</title>
-    
-    <!-- Polices typographiques élégantes (Inter & Playfair Display) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- En-tête / Header minimaliste -->
+    <!-- Bar de navigation supérieure -->
     <header>
         <div class="header-container">
-            <div class="logo">
-                <span class="logo-text">VOLUME <small>cosmetic</small></span>
-                <span class="logo-badge">3x1</span>
+            <div class="logo-box">
+                <img src="download.png" alt="VOLUME cosmetic 3x1" class="brand-logo">
             </div>
             
-            <button class="cart-btn" onclick="toggleCart()">
-                <span>PANIER</span>
-                <span id="cart-count">0</span>
-            </button>
+            <nav class="nav-links">
+                <a href="#">NEW ARRIVALS</a>
+                <a href="#">SKINCARE</a>
+                <a href="#">HAIRCARE</a>
+                <a href="#">FRAGRANCE</a>
+                <a href="#">STORY</a>
+                <a href="#">OUR PROMISE</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="cart-btn" onclick="toggleCart()">
+                    🛒 CART (<span id="cart-count">0</span>)
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- Banner principal / Hero style éditorial -->
-    <section class="hero">
-        <div class="hero-content">
-            <p class="subtitle">FORMULATIONS ÉPURÉES & ESSENTIELLES</p>
+    <!-- Bannière Hero Éditoriale -->
+    <section class="hero-banner">
+        <div class="hero-overlay">
             <h1>EDITORIAL COSMETIC</h1>
-            <p class="hero-desc">Paiement à la livraison disponible dans les 58 wilayas.</p>
         </div>
     </section>
 
-    <!-- Grille de produits -->
-    <main class="container">
-        <div class="section-header">
-            <h2>NOS PRODUITS</h2>
-            <div class="line"></div>
-        </div>
+    <!-- Section Principale Produits -->
+    <main class="main-container">
+        <h2 class="section-title">CURATED COSMETICS</h2>
 
         <div id="loading" class="loading-state">
-            <div class="spinner"></div>
             <p>Chargement des soins...</p>
         </div>
 
-        <div id="product-grid" class="grid"></div>
+        <div id="product-grid" class="product-grid"></div>
+
+        <div class="load-more-wrapper">
+            <button class="btn-load-more">LOAD MORE</button>
+        </div>
     </main>
 
-    <!-- Modal Panier & Commande -->
+    <!-- Modal Panier -->
     <div id="cart-modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="toggleCart()">&times;</span>
@@ -69,13 +73,9 @@
             <form id="checkout-form" onsubmit="submitOrder(event)">
                 <h3>INFORMATION DE LIVRAISON</h3>
                 
-                <label>Nom & Prénom</label>
-                <input type="text" id="cust-name" placeholder="Ex: Amina Benali" required>
+                <input type="text" id="cust-name" placeholder="Nom & Prénom" required>
+                <input type="tel" id="cust-phone" placeholder="Numéro de téléphone" required>
                 
-                <label>Numéro de Téléphone</label>
-                <input type="tel" id="cust-phone" placeholder="Ex: 0550 12 34 56" required>
-                
-                <label>Wilaya</label>
                 <select id="cust-wilaya" required>
                     <option value="">Sélectionnez votre Wilaya</option>
                     <option value="01 - Adrar">01 - Adrar</option>
@@ -138,17 +138,23 @@
                     <option value="58 - El Meniaa">58 - El Meniaa</option>
                 </select>
                 
-                <label>Adresse exacte</label>
-                <input type="text" id="cust-address" placeholder="Commune, Rue, N° de maison" required>
+                <input type="text" id="cust-address" placeholder="Adresse complète" required>
                 
-                <button type="submit" id="submit-btn" class="btn-submit">CONFIRMER LA COMMANDE</button>
+                <button type="submit" id="submit-btn" class="btn-submit">VALIDER LA COMMANDE</button>
             </form>
         </div>
     </div>
 
-    <!-- Pied de page -->
+    <!-- Pied de page noir -->
     <footer>
-        <p>&copy; 2026 VOLUME COSMETIC 3x1. TOUS DROITS RÉSERVÉS.</p>
+        <div class="footer-links">
+            <a href="#">QUICK LINKS</a>
+            <a href="#">SKINCARE</a>
+            <a href="#">FRAGRANCE</a>
+            <a href="#">STORY</a>
+            <a href="#">OUR PROMISE</a>
+        </div>
+        <p class="copyright">&copy; 2026 Volume Cosmetic. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <script src="script.js"></script>
