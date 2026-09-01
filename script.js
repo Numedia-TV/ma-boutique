@@ -1,4 +1,5 @@
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwOtRmrF4sDs2Pa6d3D_IQFNFI7sMKzSHArhI-XUlPO5BHuNJPZ2fSXwYESB10hRhWq/exec";
+
 let products = [];
 let cart = [];
 
@@ -9,8 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 async function fetchProducts() {
     try {
         const response = await fetch(APPS_SCRIPT_URL);
-        const textData = await response.text();
-        products = JSON.parse(textData);
+        products = await response.json();
 
         document.getElementById("loading").style.display = "none";
         renderProducts();
