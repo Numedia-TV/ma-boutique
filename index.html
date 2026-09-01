@@ -1,399 +1,144 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Volume Cosmétique 3x1 — Boutique Officielle</title>
-  
-  <!-- Polices Google Fonts pour un style luxe/épuré type The Ordinary -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
-
-  <style>
-    /* Reset & Base */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background-color: #FFFFFF;
-      color: #111111;
-      font-family: 'Montserrat', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      padding-bottom: 80px;
-    }
-
-    /* Header & Navigation */
-    header {
-      text-align: center;
-      padding: 50px 20px 30px 20px;
-      border-bottom: 1px solid #E5E5E5;
-      margin-bottom: 50px;
-    }
-
-    .brand-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 32px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: #000000;
-      margin-bottom: 8px;
-    }
-
-    .brand-subtitle {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      color: #777777;
-      font-weight: 400;
-    }
-
-    /* Layout principal */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      text-align: center;
-      letter-spacing: 1.5px;
-      margin-bottom: 40px;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-
-    /* Grille Produits Style The Ordinary / Touche */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-      margin-bottom: 70px;
-    }
-
-    .product-card {
-      background: #FFFFFF;
-      border: 1px solid #E5E5E5;
-      padding: 25px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-
-    .product-card:hover {
-      border-color: #000000;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-    }
-
-    .product-image-wrapper {
-      width: 100%;
-      height: 240px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      background-color: #FAFAFA;
-      padding: 10px;
-    }
-
-    .product-image-wrapper img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-
-    .product-title {
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      color: #111111;
-      min-height: 38px;
-      display: flex;
-      align-items: center;
-    }
-
-    .product-price {
-      font-size: 16px;
-      font-weight: 600;
-      color: #000000;
-      margin-bottom: 20px;
-      letter-spacing: 0.5px;
-    }
-
-    .btn-select {
-      width: 100%;
-      padding: 12px;
-      background-color: #000000;
-      color: #FFFFFF;
-      border: 1px solid #000000;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.2s ease, color 0.2s ease;
-    }
-
-    .btn-select:hover {
-      background-color: #FFFFFF;
-      color: #000000;
-    }
-
-    /* Formulaire de Commande Haut de Gamme */
-    .checkout-wrapper {
-      max-width: 520px;
-      margin: 0 auto;
-      border: 1px solid #111111;
-      padding: 40px 35px;
-      background: #FFFFFF;
-    }
-
-    .checkout-header {
-      text-align: center;
-      margin-bottom: 30px;
-      border-bottom: 1px solid #E5E5E5;
-      padding-bottom: 20px;
-    }
-
-    .checkout-header h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .selected-product-box {
-      font-size: 12px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #555555;
-      background: #FAFAFA;
-      padding: 12px;
-      border: 1px dashed #CCCCCC;
-    }
-
-    .selected-product-box strong {
-      color: #000000;
-    }
-
-    .form-group {
-      margin-bottom: 22px;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: #222222;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #D1D1D1;
-      background: #FFFFFF;
-      font-size: 13px;
-      font-family: 'Montserrat', sans-serif;
-      color: #111111;
-      outline: none;
-      transition: border-color 0.2s ease;
-    }
-
-    .form-group input:focus {
-      border-color: #000000;
-    }
-
-    .btn-submit {
-      width: 100%;
-      padding: 15px;
-      background-color: #000000;
-      color: #FFFFFF;
-      border: 1px solid #000000;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 2.5px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: background-color 0.2s ease, color 0.2s ease;
-    }
-
-    .btn-submit:hover {
-      background-color: #333333;
-      border-color: #333333;
-    }
-
-    .status-loading {
-      text-align: center;
-      font-size: 12px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #888888;
-      padding: 40px 0;
-      grid-column: 1 / -1;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volume Cosmetic 3x1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3.0">
 </head>
 <body>
 
-  <!-- En-tête de la marque -->
-  <header>
-    <div class="brand-logo">Volume Cosmétique</div>
-    <div class="brand-subtitle">3 x 1 — Formulations Spécialisées</div>
-  </header>
+    <!-- En-tête : Logo à gauche / Panier à droite -->
+    <header>
+        <div class="header-container">
+            <div class="logo-box">
+                <img src="download.png" alt="Logo Volume Cosmetic 3x1" class="brand-logo">
+            </div>
+            
+            <div class="header-actions">
+                <button class="cart-btn" onclick="toggleCart()">
+                    CART (<span id="cart-count">0</span>)
+                </button>
+            </div>
+        </div>
+    </header>
 
-  <div class="container">
-    <h2 class="section-title">Sélection de Produits</h2>
+    <!-- Petite Couverture / Bannière (Fond Noir Épuré) -->
+    <section class="hero-banner">
+        <h1>EDITORIAL COSMETIC</h1>
+    </section>
 
-    <!-- Conteneur des cartes produits -->
-    <div id="products-container" class="products-grid">
-      <div class="status-loading">Chargement de la collection...</div>
+    <!-- Section Produits -->
+    <main class="main-container">
+        <h2 class="section-title">CURATED COSMETICS</h2>
+
+        <div id="loading" class="loading-state">
+            <p>Chargement des produits...</p>
+        </div>
+
+        <div id="product-grid" class="product-grid"></div>
+
+        <div class="load-more-wrapper">
+            <button class="btn-load-more">LOAD MORE</button>
+        </div>
+    </main>
+
+    <!-- Modal Panier (Commandes COD) -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleCart()">&times;</span>
+            <h2 class="modal-title">VOTRE PANIER</h2>
+            
+            <div id="cart-items"></div>
+            
+            <div class="cart-summary">
+                <span>TOTAL</span>
+                <strong id="cart-subtotal">0 DA</strong>
+            </div>
+
+            <form id="checkout-form" onsubmit="submitOrder(event)">
+                <h3>INFORMATION DE LIVRAISON</h3>
+                
+                <input type="text" id="cust-name" placeholder="Nom & Prénom" required>
+                <input type="tel" id="cust-phone" placeholder="Numéro de téléphone" required>
+                
+                <select id="cust-wilaya" required>
+                    <option value="">Sélectionnez votre Wilaya</option>
+                    <option value="01 - Adrar">01 - Adrar</option>
+                    <option value="02 - Chlef">02 - Chlef</option>
+                    <option value="03 - Laghouat">03 - Laghouat</option>
+                    <option value="04 - Oum El Bouaghi">04 - Oum El Bouaghi</option>
+                    <option value="05 - Batna">05 - Batna</option>
+                    <option value="06 - Béjaïa">06 - Béjaïa</option>
+                    <option value="07 - Biskra">07 - Biskra</option>
+                    <option value="08 - Béchar">08 - Béchar</option>
+                    <option value="09 - Blida">09 - Blida</option>
+                    <option value="10 - Bouira">10 - Bouira</option>
+                    <option value="11 - Tamanrasset">11 - Tamanrasset</option>
+                    <option value="12 - Tébessa">12 - Tébessa</option>
+                    <option value="13 - Tlemcen">13 - Tlemcen</option>
+                    <option value="14 - Tiaret">14 - Tiaret</option>
+                    <option value="15 - Tizi Ouzou">15 - Tizi Ouzou</option>
+                    <option value="16 - Alger">16 - Alger</option>
+                    <option value="17 - Djelfa">17 - Djelfa</option>
+                    <option value="18 - Jijel">18 - Jijel</option>
+                    <option value="19 - Sétif">19 - Sétif</option>
+                    <option value="20 - Saïda">20 - Saïda</option>
+                    <option value="21 - Skikda">21 - Skikda</option>
+                    <option value="22 - Sidi Bel Abbès">22 - Sidi Bel Abbès</option>
+                    <option value="23 - Annaba">23 - Annaba</option>
+                    <option value="24 - Guelma">24 - Guelma</option>
+                    <option value="25 - Constantine">25 - Constantine</option>
+                    <option value="26 - Médéa">26 - Médéa</option>
+                    <option value="27 - Mostaganem">27 - Mostaganem</option>
+                    <option value="28 - M'Sila">28 - M'Sila</option>
+                    <option value="29 - Mascara">29 - Mascara</option>
+                    <option value="30 - Ouargla">30 - Ouargla</option>
+                    <option value="31 - Oran">31 - Oran</option>
+                    <option value="32 - El Bayadh">32 - El Bayadh</option>
+                    <option value="33 - Illizi">33 - Illizi</option>
+                    <option value="34 - Bordj Bou Arreridj">34 - Bordj Bou Arreridj</option>
+                    <option value="35 - Boumerdès">35 - Boumerdès</option>
+                    <option value="36 - El Tarf">36 - El Tarf</option>
+                    <option value="37 - Tindouf">37 - Tindouf</option>
+                    <option value="38 - Tissemsilt">38 - Tissemsilt</option>
+                    <option value="39 - El Oued">39 - El Oued</option>
+                    <option value="40 - Khenchela">40 - Khenchela</option>
+                    <option value="41 - Souk Ahras">41 - Souk Ahras</option>
+                    <option value="42 - Tipaza">42 - Tipaza</option>
+                    <option value="43 - Mila">43 - Mila</option>
+                    <option value="44 - Aïn Defla">44 - Aïn Defla</option>
+                    <option value="45 - Naâma">45 - Naâma</option>
+                    <option value="46 - Aïn Témouchent">46 - Aïn Témouchent</option>
+                    <option value="47 - Ghardaïa">47 - Ghardaïa</option>
+                    <option value="48 - Relizane">48 - Relizane</option>
+                    <option value="49 - Timimoun">49 - Timimoun</option>
+                    <option value="50 - Bordj Badji Mokhtar">50 - Bordj Badji Mokhtar</option>
+                    <option value="51 - Ouled Djellal">51 - Ouled Djellal</option>
+                    <option value="52 - Béni Abbès">52 - Béni Abbès</option>
+                    <option value="53 - In Salah">53 - In Salah</option>
+                    <option value="54 - In Guezzam">54 - In Guezzam</option>
+                    <option value="55 - Touggourt">55 - Touggourt</option>
+                    <option value="56 - Djanet">56 - Djanet</option>
+                    <option value="57 - El M'Ghair">57 - El M'Ghair</option>
+                    <option value="58 - El Meniaa">58 - El Meniaa</option>
+                </select>
+                
+                <input type="text" id="cust-address" placeholder="Adresse complète" required>
+                
+                <button type="submit" id="submit-btn" class="btn-submit">VALIDER LA COMMANDE</button>
+            </form>
+        </div>
     </div>
 
-    <!-- Formulaire de commande minimaliste -->
-    <div class="checkout-wrapper" id="checkout-section">
-      <div class="checkout-header">
-        <h3>Finaliser la Commande</h3>
-        <div id="selected-product-info" class="selected-product-box">
-          Aucun produit sélectionné
-        </div>
-      </div>
+    <!-- Pied de page Noir Strict -->
+    <footer>
+        <p class="copyright">&copy; 2026 Volume Cosmetic. ALL RIGHTS RESERVED.</p>
+    </footer>
 
-      <form id="formCommande">
-        <div class="form-group">
-          <label for="nom">Nom & Prénom</label>
-          <input type="text" id="nom" placeholder="Ex: Amine Benali" required>
-        </div>
-
-        <div class="form-group">
-          <label for="telephone">Téléphone</label>
-          <input type="tel" id="telephone" placeholder="Ex: 0550123456" required>
-        </div>
-
-        <div class="form-group">
-          <label for="adresse">Adresse complète & Ville</label>
-          <input type="text" id="adresse" placeholder="Ex: Bab Ezzouar, Alger" required>
-        </div>
-
-        <button type="button" class="btn-submit" onclick="envoyerCommande()">Confirmer la Commande</button>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    // ⚠️ Remplacez par votre URL Apps Script déployée
-    const SCRIPT_URL = "https://script.google.com/macros/s/VOTRE_ID_DEPLOIEMENT/exec";
-
-    let produitSelectionne = {
-      nom: "",
-      prix: ""
-    };
-
-    window.onload = function() {
-      chargerProduits();
-    };
-
-    // Charger les produits depuis Google Sheets
-    function chargerProduits() {
-      fetch(SCRIPT_URL)
-        .then(response => response.json())
-        .then(data => {
-          const container = document.getElementById("products-container");
-          container.innerHTML = "";
-
-          if (!data || data.length === 0) {
-            container.innerHTML = '<div class="status-loading">Aucun produit disponible pour le moment.</div>';
-            return;
-          }
-
-          data.forEach(product => {
-            const card = document.createElement("div");
-            card.className = "product-card";
-            card.innerHTML = `
-              <div class="product-image-wrapper">
-                <img src="${product.image_url}" alt="${product.nom}" onerror="this.src='https://via.placeholder.com/200x200?text=Volume+Cosmétique'">
-              </div>
-              <div class="product-title">${product.nom}</div>
-              <div class="product-price">${product.prix}</div>
-              <button class="btn-select" onclick="choisirProduit('${product.nom.replace(/'/g, "\\'")}', '${product.prix}')">Sélectionner</button>
-            `;
-            container.appendChild(card);
-          });
-        })
-        .catch(error => {
-          console.error("Erreur de chargement :", error);
-          document.getElementById("products-container").innerHTML = '<div class="status-loading">Impossible de charger le catalogue.</div>';
-        });
-    }
-
-    // Sélectionner un produit et faire défiler jusqu'au formulaire
-    function choisirProduit(nom, prix) {
-      produitSelectionne.nom = nom;
-      produitSelectionne.prix = prix;
-      document.getElementById("selected-product-info").innerHTML = `Produit retenu : <strong>${nom}</strong> — ${prix}`;
-      
-      const target = document.getElementById('checkout-section');
-      window.scrollTo({ top: target.offsetTop - 30, behavior: 'smooth' });
-    }
-
-    // Envoi de la commande vers Google Sheets
-    function envoyerCommande() {
-      const nomVal = document.getElementById("nom").value.trim();
-      const telVal = document.getElementById("telephone").value.trim();
-      const adrVal = document.getElementById("adresse").value.trim();
-
-      if (!produitSelectionne.nom) {
-        alert("Veuillez sélectionner un produit dans la liste.");
-        return;
-      }
-
-      if (!nomVal || !telVal || !adrVal) {
-        alert("Veuillez remplir tous les champs du formulaire.");
-        return;
-      }
-
-      const payload = {
-        nom: nomVal,
-        telephone: telVal,
-        adresse: adrVal,
-        produit: produitSelectionne.nom,
-        prix: produitSelectionne.prix
-      };
-
-      fetch(SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload)
-      })
-      .then(() => {
-        alert("Votre commande a bien été transmise à Volume Cosmétique.");
-        document.getElementById("formCommande").reset();
-        document.getElementById("selected-product-info").innerText = "Aucun produit sélectionné";
-        produitSelectionne = { nom: "", prix: "" };
-      })
-      .catch(error => {
-        console.error("Erreur d'envoi :", error);
-        alert("Erreur réseau lors de l'envoi de la commande.");
-      });
-    }
-  </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
